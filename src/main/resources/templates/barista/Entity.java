@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class ${Resource} {
+public class ${Entity} {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
