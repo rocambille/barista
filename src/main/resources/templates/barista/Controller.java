@@ -20,7 +20,7 @@ class ${Resource}Controller {
     private ${Resource}Repository ${resource}Repository;
 
     @PostMapping("/#####")
-    public ${Resource} store(@ModelAttribute ${Resource} ${resource}) {
+    public ${Resource} add(@ModelAttribute ${Resource} ${resource}) {
         return ${resource}Repository.save(${resource});
     }
 
