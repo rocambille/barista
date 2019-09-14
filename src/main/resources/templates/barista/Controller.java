@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 /* Import your repository there */
 /* Import your entity there */
@@ -25,4 +28,15 @@ class ${Resource}Controller {
     public List<${Resource}> browse() {
         return ${Resource}Repository.findAll();
     }
+
+    @DeleteMapping("#####/{id}")
+    public void destroy(@PathVariable Long id) {
+        ${resource}Repository.delete(
+            ${resource}Repository.findById(id).get()!= null  /* à vérifier " != null" */
+        ); 
+        return "redirect:/";
+    }
+
+    
+
 }
