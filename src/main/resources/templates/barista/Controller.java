@@ -27,7 +27,7 @@ class ${Resource}Controller {
 
     @GetMapping("/#####")
     public List<${Resource}> browse() {
-        return ${Resource}Repository.findAll();
+        return ${resource}Repository.findAll();
     }
 
     @GetMapping("#####/{id}")
