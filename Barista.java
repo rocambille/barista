@@ -55,6 +55,7 @@ class Barista {
                 System.out.println("Do you need a resource controller? Just tell the name of your resource:");
 
                 String resourceName = scanner.nextLine();
+                String resourceLowerCase = resourceName.toLowerCase();
 
                 try {
                     String fileContent = new String(
@@ -64,10 +65,13 @@ class Barista {
                     );
         
                     String newFileContent = fileContent.replace("${Resource}", resourceName);
+                    String newFileContentWithLowerCase = newFileContent.replace("${resource}", resourceLowerCase);
+
         
                     System.out.println("Writing " + resourceName + "Controller.java for you...");
                     Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + resourceName + "Controller.java"), newFileContent.getBytes());
+                    Files.write(Paths.get(outputDirectoryName + "/" + resourceName + "Controller.java"), newFileContentWithLowerCase.getBytes());
+                    
                 }
                 catch(Exception e) {
                     e.printStackTrace();
