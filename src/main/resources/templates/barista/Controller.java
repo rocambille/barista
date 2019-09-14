@@ -29,6 +29,11 @@ class ${Resource}Controller {
         return ${Resource}Repository.findAll();
     }
 
+    @GetMapping("#####/{id}")
+    public ${Resource} read (@PathVariable Long id) {
+        return ${resource}Repository.findById(id).get();
+    }
+
     @DeleteMapping("#####/{id}")
     public void destroy(@PathVariable Long id) {
         ${resource}Repository.delete(
@@ -37,6 +42,6 @@ class ${Resource}Controller {
         return "redirect:/";
     }
 
-    
+
 
 }
