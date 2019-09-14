@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-/* Import your repository there */
-/* Import your entity there */
+/* Import your repository here */
+/* Import your entity here */
 
 @Controller
 class ${Resource}Controller {
