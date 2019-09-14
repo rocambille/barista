@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -34,10 +35,21 @@ class ${Resource}Controller {
         return ${resource}Repository.findById(id).get();
     }
 
+    @PutMapping("/#####/{id}")
+    public ${Resource} update(@PathVariable Long id, @ModelAttribute ${Resource} ${resource}) {
+        ${Resource} ${resource} = ${resource}Repository.findById(id).get()
+        if (${resource}.get*****() != null) {
+            ${resource}.set*****(
+                ${resource}.get*****()
+            );
+        }
+        return ${resource}Repository.save(${resource});
+    }
+
     @DeleteMapping("#####/{id}")
     public void destroy(@PathVariable Long id) {
         ${resource}Repository.delete(
-            ${resource}Repository.findById(id).get()!= null  /* à vérifier " != null" */
+            ${resource}Repository.findById(id).get()
         ); 
         return "redirect:/";
     }
