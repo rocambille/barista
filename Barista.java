@@ -79,6 +79,7 @@ class Barista {
                 System.out.println("Do you need a repository? Just say the name of his entity:");
 
                 String repositoryName = scanner.nextLine();
+                String repositoryNameNormalize = repositoryName.substring(0,1).toUpperCase()+repositoryName.substring(1);
 
                 try {
                     String fileContent = new String(
@@ -87,11 +88,11 @@ class Barista {
                         )
                     );
         
-                    String newFileContent = fileContent.replace("${Repository}", repositoryName);
+                    String newFileContent = fileContent.replace("${Repository}", repositoryNameNormalize);
         
-                    System.out.println("Writing " + repositoryName + "Repository.java for you...");
+                    System.out.println("Writing " + repositoryNameNormalize + "Repository.java for you...");
                     Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + repositoryName + "Repository.java"), newFileContent.getBytes());
+                    Files.write(Paths.get(outputDirectoryName + "/" + repositoryNameNormalize + "Repository.java"), newFileContent.getBytes());
                 }
                 catch(Exception e) {
                     e.printStackTrace();
