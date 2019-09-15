@@ -37,9 +37,9 @@ class ${Resource}Controller {
 
     @PutMapping("/#####/{id}")
     public ${Resource} update(@PathVariable Long id, @ModelAttribute ${Resource} ${resource}) {
-        ${Resource} ${resource} = ${resource}Repository.findById(id).get()
+        ${Resource} ${resource}ToUpdate = ${resource}Repository.findById(id).get()
         if (${resource}.get*****() != null) {
-            ${resource}.set*****(
+            ${resource}ToUpdate.set*****(
                 ${resource}.get*****()
             );
         }
