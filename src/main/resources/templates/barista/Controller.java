@@ -43,7 +43,7 @@ class ${Resource}Controller {
                 ${resource}.get*****()
             );
         }
-        return ${resource}Repository.save(${resource});
+        return ${resource}Repository.save(${resource}ToUpdate);
     }
 
     @DeleteMapping("#####/{id}")
