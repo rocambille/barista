@@ -31,7 +31,7 @@ class ${Resource}Controller {
     }
 
     @GetMapping("#####/{id}")
-    public ${Resource} read (@PathVariable Long id) {
+    public ${Resource} read(@PathVariable Long id) {
         return ${resource}Repository.findById(id).get();
     }
 
