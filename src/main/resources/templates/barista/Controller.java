@@ -46,7 +46,7 @@ class ${Resource}Controller {
         return ${resource}Repository.save(${resource}ToUpdate);
     }
 
-    @DeleteMapping("#####/{id}")
+    @DeleteMapping("/#####/{id}")
     public void destroy(@PathVariable Long id) {
         ${resource}Repository.delete(
             ${resource}Repository.findById(id).get()
