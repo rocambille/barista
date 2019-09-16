@@ -2,6 +2,8 @@ package #####;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +22,7 @@ class ${Resource}Controller {
     private ${Resource}Repository ${resource}Repository;
 
     @PostMapping("/${resource}s")
-    public ${Resource} add(@ModelAttribute ${Resource} ${resource}) {
+    public ${Resource} add(@Valid @ModelAttribute ${Resource} ${resource}) {
         return ${resource}Repository.save(${resource});
     }
 
