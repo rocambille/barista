@@ -19,22 +19,22 @@ class ${Resource}Controller {
     @Autowired
     private ${Resource}Repository ${resource}Repository;
 
-    @PostMapping("/#####")
+    @PostMapping("/${resource}s")
     public ${Resource} add(@ModelAttribute ${Resource} ${resource}) {
         return ${resource}Repository.save(${resource});
     }
 
-    @GetMapping("/#####")
+    @GetMapping("/${resource}s")
     public List<${Resource}> browse() {
         return ${resource}Repository.findAll();
     }
 
-    @GetMapping("/#####/{id}")
+    @GetMapping("/${resource}s/{id}")
     public ${Resource} read(@PathVariable Long id) {
         return ${resource}Repository.findById(id).get();
     }
 
-    @PutMapping("/#####/{id}")
+    @PutMapping("/${resource}s/{id}")
     public ${Resource} update(@PathVariable Long id, @ModelAttribute ${Resource} ${resource}) {
         ${Resource} ${resource}ToUpdate = ${resource}Repository.findById(id).get();
         if (${resource}.get*****() != null) {
@@ -45,7 +45,7 @@ class ${Resource}Controller {
         return ${resource}Repository.save(${resource}ToUpdate);
     }
 
-    @DeleteMapping("/#####/{id}")
+    @DeleteMapping("/${resource}s/{id}")
     public void destroy(@PathVariable Long id) {
         ${resource}Repository.delete(
             ${resource}Repository.findById(id).get()
