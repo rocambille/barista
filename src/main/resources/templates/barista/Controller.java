@@ -50,6 +50,5 @@ class ${Resource}Controller {
         ${resource}Repository.delete(
             ${resource}Repository.findById(id).get()
         ); 
-        return "redirect:/";
     }
 }
