@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /* Import your repository here */
 /* Import your entity here */
 
-@Controller
+@RestController
 class ${Resource}Controller {
     @Autowired
     private ${Resource}Repository ${resource}Repository;
