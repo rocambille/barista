@@ -53,7 +53,4 @@ class ${Resource}Controller {
         ); 
         return "redirect:/";
     }
-
-
-
 }
