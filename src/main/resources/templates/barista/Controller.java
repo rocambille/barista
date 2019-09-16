@@ -21,11 +21,6 @@ class ${Resource}Controller {
     @Autowired
     private ${Resource}Repository ${resource}Repository;
 
-    @PostMapping("/${resource}s")
-    public ${Resource} add(@Valid @ModelAttribute ${Resource} ${resource}) {
-        return ${resource}Repository.save(${resource});
-    }
-
     @GetMapping("/${resource}s")
     public List<${Resource}> browse() {
         return ${resource}Repository.findAll();
@@ -37,7 +32,12 @@ class ${Resource}Controller {
     }
 
     @PutMapping("/${resource}s/{id}")
-    public ${Resource} update((@Valid @ModelAttribute ${Resource} ${resource}) {
+    public ${Resource} edit((@Valid @ModelAttribute ${Resource} ${resource}) {
+        return ${resource}Repository.save(${resource});
+    }
+
+    @PostMapping("/${resource}s")
+    public ${Resource} add(@Valid @ModelAttribute ${Resource} ${resource}) {
         return ${resource}Repository.save(${resource});
     }
 
