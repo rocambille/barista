@@ -32,7 +32,7 @@ class ${Resource}Controller {
     }
 
     @PutMapping("/${resource}s/{id}")
-    public ${Resource} edit((@Valid @ModelAttribute ${Resource} ${resource}) {
+    public ${Resource} edit(@Valid @ModelAttribute ${Resource} ${resource}) {
         return ${resource}Repository.save(${resource});
     }
 
