@@ -60,9 +60,9 @@ class Barista {
                 String resourceLowerCase = resourceName.toLowerCase();
 
                 if(resourceName.endsWith("y")) {
-                    resourceMapping = resourceName.substring(0, resourceName.length() - 1)+"ies";
+                    resourceMapping = resourceName.substring(0, resourceName.length() - 1) + "ies";
                 } else {
-                        resourceMapping = resourceName+"s";
+                        resourceMapping = resourceName + "s";
                 };
 
                 try {
