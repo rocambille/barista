@@ -7,6 +7,7 @@ class Barista {
     public static void main(String[] args) {
         String baseInputDirectoryName = "src/main/resources/templates/barista";
         String baseOutputDirectoryName = "src/main/java";
+        String resourceMapping = "";
 
         System.out.println("Hello dear customer :)");
         System.out.println("What can I do for you today?");
@@ -58,6 +59,14 @@ class Barista {
                 String resourceNameNormalize = resourceName.substring(0,1).toUpperCase()+resourceName.substring(1);
                 String resourceLowerCase = resourceName.toLowerCase();
 
+                if(resourceName.endsWith("y")) {
+                    resourceName = resourceName.substring(0, resourceName.length() - 1);
+                        resourceMapping = resourceName+"ies";
+
+                } else {
+                        resourceMapping = resourceName+"s";
+                };
+
                 try {
                     String fileContent = new String(
                         Files.readAllBytes(
@@ -65,13 +74,14 @@ class Barista {
                         )
                     );
         
-                    String newFileContent = fileContent.replace("${Resource}", resourceNameNormalize);
-                    String newFileContentWithLowerCase = newFileContent.replace("${resource}", resourceLowerCase);
+                    String newFileContentPathOne = fileContent.replace("${Resource}", resourceNameNormalize);
+                    String newFileContentPathTwo = newFileContentPathOne.replace("${resource}", resourceLowerCase);
+                    String newFileContentPathThree = newFileContentPathTwo.replace("${resourceMapping}", resourceMapping );
 
         
                     System.out.println("Writing " + resourceNameNormalize + "Controller.java for you...");
                     Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + resourceNameNormalize + "Controller.java"), newFileContentWithLowerCase.getBytes());
+                    Files.write(Paths.get(outputDirectoryName + "/" + resourceNameNormalize + "Controller.java"), newFileContentPathThree.getBytes());
                     
                 }
                 catch(Exception e) {
