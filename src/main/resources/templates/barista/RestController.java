@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+/* Import your ${$Resource} entity here */
+/* Import your ${Resource}Repository here */
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,9 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-/* Import your ${Resource}Repository here */
-/* Import your ${$Resource} entity here */
 
 @RestController
 class ${Resource}Controller {

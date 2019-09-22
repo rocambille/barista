@@ -12,7 +12,7 @@ class Barista {
         System.out.println("Hello dear customer :)");
         System.out.println("What can I do for you today?");
         System.out.println("1 - I want an entity");
-        System.out.println("2 - I want a controller");
+        System.out.println("2 - I want a restController");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -53,7 +53,7 @@ class Barista {
                 break;
             case 2:
                 outputDirectoryName += "/controllers";
-                System.out.println("Do you need a resource controller? Just tell the name of your resource:");
+                System.out.println("Do you need a resource restController? Just tell the name of your resource:");
 
                 String resourceName = scanner.nextLine();
                 String resourceNameNormalize = resourceName.substring(0,1).toUpperCase()+resourceName.substring(1);
@@ -68,7 +68,7 @@ class Barista {
                 try {
                     String fileContent = new String(
                         Files.readAllBytes(
-                            Paths.get(baseInputDirectoryName + "/Controller.java")
+                            Paths.get(baseInputDirectoryName + "/RestController.java")
                         )
                     );
         
@@ -77,9 +77,9 @@ class Barista {
                     String newFileContentPathThree = newFileContentPathTwo.replace("${resourceMapping}", resourceMapping );
 
         
-                    System.out.println("Writing " + resourceNameNormalize + "Controller.java for you...");
+                    System.out.println("Writing " + resourceNameNormalize + "RestController.java for you...");
                     Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + resourceNameNormalize + "Controller.java"), newFileContentPathThree.getBytes());
+                    Files.write(Paths.get(outputDirectoryName + "/" + resourceNameNormalize + "RestController.java"), newFileContentPathThree.getBytes());
                     
                 }
                 catch(Exception e) {
