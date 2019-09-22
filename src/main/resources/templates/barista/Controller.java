@@ -7,7 +7,7 @@ import javax.validation.Valid;
 /* Import your ${$Resource} entity here */
 /* Import your ${Resource}Repository here */
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,29 +16,34 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@RestController
+@Controller
 class ${Resource}Controller {
     @Autowired
     private ${Resource}Repository ${resource}Repository;
 
     @GetMapping("/${resourceMapping}")
     public List<${Resource}> browse() {
-        return ${resource}Repository.findAll();
+        ${resource}Repository.findAll();
+        return "";
     }
 
     @GetMapping("/${resourceMapping}/{id}")
-    public ${Resource} read(@PathVariable Long id) {
-        return ${resource}Repository.findById(id).get();
+    public String read(Model model, @PathVariable("id") Long id) {
+        ${Resource} ${resource} = ${resource}Repository.findById(id).get();
+        model.addAttribute("${resource}", ${resource});
+        return ""; /* Insert your template name here */
     }
 
     @PutMapping("/${resourceMapping}/{id}")
     public ${Resource} edit(@Valid @ModelAttribute ${Resource} ${resource}) {
-        return ${resource}Repository.save(${resource});
+        ${resource}Repository.save(${resource});
+        return "";
     }
 
     @PostMapping("/${resourceMapping}")
     public ${Resource} add(@Valid @ModelAttribute ${Resource} ${resource}) {
-        return ${resource}Repository.save(${resource});
+        ${resource}Repository.save(${resource});
+        return "";
     }
 
     @DeleteMapping("/${resourceMapping}/{id}")
