@@ -23,9 +23,10 @@ class ${Resource}Controller {
     private ${Resource}Repository ${resource}Repository;
 
     @GetMapping("/${resourceMapping}")
-    public List<${Resource}> browse() {
-        ${resource}Repository.findAll();
-        return "";
+    public String ${resourceMapping}(Model model) {
+        List<${Resource}> ${resourceMapping} = ${resource}Repository.findAll();
+        model.addAttribute("${resourceMapping}", ${resourceMapping});
+        return ""; /* Insert your template name here */
     }
 
     @GetMapping("/${resourceMapping}/{id}")
