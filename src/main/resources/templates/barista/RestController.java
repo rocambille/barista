@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-/* Import your repository here */
-/* Import your entity here */
+/* Import your ${Resource}Repository here */
+/* Import your ${$Resource} entity here */
 
 @RestController
 class ${Resource}Controller {
