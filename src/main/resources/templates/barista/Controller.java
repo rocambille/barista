@@ -44,8 +44,8 @@ class ${Resource}Controller {
 
     @PostMapping("/${resourceMapping}")
     public String add(@Valid @ModelAttribute ${Resource} ${resource}) {
-        ${resource}Repository.save(${resource});
-        return ""; /* Insert your template name here */
+        ${Resource} ${resource} = ${resource}Repository.save(new ${resource}());
+        return "redirect:/${resourceMapping}/" + ${resource}.getId();
     }
 
     @DeleteMapping("/${resourceMapping}/{id}")
