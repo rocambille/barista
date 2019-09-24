@@ -1,8 +1,35 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 class Barista {
+
+    private static class Choice{
+        String outputDirectoryName;
+        String message;
+        String inputDirectory;
+        String newFileReplacement;
+        String newFileExtention;
+
+        Choice(int i){
+            if(i == 1){
+                outputDirectoryName = "/entities";
+                message = "Do you need an entity? Just tell its name:";
+                inputDirectory = "/Entity.java";
+                newFileReplacement = "${Entity}";
+                newFileExtention = ".java";
+            }
+            if(i == 2){
+                outputDirectoryName = "/controllers";
+                message = "Do you need a resource controller? Just tell the name of your resource:";
+                inputDirectory = "/Controller.java";
+                newFileReplacement = "${Resource}";
+                newFileExtention = "Controller.java";
+            }
+        }
+
+    }
 
     public static void main(String[] args) {
         String baseInputDirectoryName = "src/main/resources/templates/barista";
@@ -12,6 +39,11 @@ class Barista {
         System.out.println("What can I do for you today?");
         System.out.println("1 - I want an entity");
         System.out.println("2 - I want a controller");
+
+        ArrayList<Integer> choicePool = new ArrayList();
+        // new options could be added, but Choice class will require modification.
+        choicePool.add(1);
+        choicePool.add(2);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -26,55 +58,32 @@ class Barista {
 
         String outputDirectoryName = baseOutputDirectoryName;
 
-        switch(choice) {
-            case 1:
-                outputDirectoryName += "/entities";
-                System.out.println("Do you need an entity? Just tell its name:");
+        if (choicePool.contains(choice)){
+            Choice choiceObj = new Choice(choice);
+            outputDirectoryName += choiceObj.outputDirectoryName;
+            System.out.println(choiceObj.message);
 
-                String entityName = scanner.nextLine();
+            String resourceName = scanner.nextLine();
 
-                try {
-                    String fileContent = new String(
+            try{
+                String fileContent = new String(
                         Files.readAllBytes(
-                            Paths.get(baseInputDirectoryName + "/Entity.java")
-                        )
-                    );
-        
-                    String newFileContent = fileContent.replace("${Entity}", entityName);
-        
-                    System.out.println("Writing " + entityName + ".java for you...");
-                    Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + entityName + ".java"), newFileContent.getBytes());
-                }
-                catch(Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            case 2:
-                outputDirectoryName += "/controllers";
-                System.out.println("Do you need a resource controller? Just tell the name of your resource:");
+                            Paths.get(baseInputDirectoryName + choiceObj.inputDirectory)
+                    )
+                );
 
-                String resourceName = scanner.nextLine();
+                String newFileContent = fileContent.replace(choiceObj.newFileReplacement, resourceName);
+                System.out.println("Writing" + resourceName + choiceObj.newFileExtention + " for you...");
+                Files.createDirectories(Paths.get(outputDirectoryName));
+                Files.write(Paths.get(outputDirectoryName + "/" + resourceName + choiceObj.newFileExtention), newFileContent.getBytes());
 
-                try {
-                    String fileContent = new String(
-                        Files.readAllBytes(
-                            Paths.get(baseInputDirectoryName + "/Controller.java")
-                        )
-                    );
-        
-                    String newFileContent = fileContent.replace("${Resource}", resourceName);
-        
-                    System.out.println("Writing " + resourceName + "Controller.java for you...");
-                    Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + resourceName + "Controller.java"), newFileContent.getBytes());
-                }
-                catch(Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            default:
-                System.out.println("Sorry, but I didn't understand your choice");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        } else {
+            System.out.println("Sorry, but I didn't understand your choice");
         }
 
         scanner.close();
