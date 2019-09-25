@@ -44,7 +44,7 @@ class ${Resource}Controller {
 
     @PostMapping("/${resourceMapping}")
     public String add(@Valid @ModelAttribute ${Resource} ${resource}) {
-        ${Resource} ${resource} = ${resource}Repository.save(new ${resource}());
+        ${Resource} ${resource} = ${resource}Repository.save(new ${Resource}());
         return "redirect:/${resourceMapping}/" + ${resource}.getId();
     }
 
