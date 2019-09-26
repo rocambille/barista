@@ -1,2 +1,2 @@
-class ${Resource}Controller {
+class ${ClassName}Controller {
 }
