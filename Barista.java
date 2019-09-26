@@ -51,7 +51,7 @@ class Barista {
                     e.printStackTrace();
                 }
                 break;
-            case 2:
+            case 3:
                 outputDirectoryName += "/controllers";
                 System.out.println("Do you need a resource controller? Just tell the name of your resource:");
 
