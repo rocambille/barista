@@ -37,7 +37,7 @@ class ${Resource}Controller {
     }
 
     @PutMapping("/${resourceMapping}/{id}")
-    public ${Resource} edit(@Valid @ModelAttribute ${Resource} ${resource}) {
+    public String edit(@Valid @ModelAttribute ${Resource} ${resource}) {
         ${resource}Repository.save(${resource});
         return "";
     }
@@ -49,9 +49,10 @@ class ${Resource}Controller {
     }
 
     @DeleteMapping("/${resourceMapping}/{id}")
-    public void destroy(@PathVariable Long id) {
+    public String destroy(@PathVariable Long id) {
         ${resource}Repository.delete(
             ${resource}Repository.findById(id).get()
         ); 
+        return "redirect:/${resourceMapping}";
     }
 }
