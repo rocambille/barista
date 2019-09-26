@@ -74,7 +74,7 @@ class Barista {
                     e.printStackTrace();
                 }
                 break;
-                case 3:
+                case 4:
                 outputDirectoryName += "/repositories";
                 System.out.println("Do you need a repository? Just say the name of his entity:");
 
