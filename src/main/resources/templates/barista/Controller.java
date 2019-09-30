@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-/* Import your ${$Resource} entity here */
+/* Import your ${Resource} entity here */
 /* Import your ${Resource}Repository here */
 
 import org.springframework.stereotype.Controller;
