@@ -12,7 +12,7 @@ class Barista {
         System.out.println("Hello dear customer :)");
         System.out.println("What can I do for you today?");
         System.out.println("1 - I want an entity");
-        System.out.println("2 - I want a controller");
+        System.out.println("3 - I want a controller");
 
         Scanner scanner = new Scanner(System.in);
 
