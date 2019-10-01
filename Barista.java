@@ -72,8 +72,8 @@ class Barista {
                         )
                     );
         
-                    String newFileContentPathOne = fileContent.replace("${Resource}", resourceNameNormalize);
-                    String newFileContentPathTwo = newFileContentPathOne.replace("${resource}", resourceLowerCase);
+                    String newFileContentPathOne = fileContent.replace("${UpperName}", resourceNameNormalize);
+                    String newFileContentPathTwo = newFileContentPathOne.replace("${lowerName}", resourceLowerCase);
                     String newFileContentPathThree = newFileContentPathTwo.replace("${slugs}", resourceSlugs );
 
         
