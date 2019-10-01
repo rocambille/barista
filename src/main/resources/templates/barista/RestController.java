@@ -31,14 +31,14 @@ class ${UpperName}Controller {
         return ${lowerName}Repository.findById(id).get();
     }
 
-    @PutMapping("/${slugs}/{id}")
-    public ${UpperName} edit(@Valid @ModelAttribute ${UpperName} ${lowerName}) {
-        return ${lowerName}Repository.save(${lowerName});
+    @PutMapping("/${slugs}/{id}/edit")
+    public ${UpperName} edit(@Valid @ModelAttribute ${UpperName} resource) {
+        return ${lowerName}Repository.save(resource);
     }
 
-    @PostMapping("/${slugs}")
-    public ${UpperName} add(@Valid @ModelAttribute ${UpperName} ${lowerName}) {
-        return ${lowerName}Repository.save(${lowerName});
+    @PostMapping("/${slugs}/create")
+    public ${UpperName} add(@Valid @ModelAttribute ${UpperName} resource) {
+        return ${lowerName}Repository.save(resource);
     }
 
     @DeleteMapping("/${slugs}/{id}")
