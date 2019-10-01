@@ -88,7 +88,7 @@ class Barista {
 
             System.out.println("Writing " + resourceName + remainResourceName + " for you...");
             Files.createDirectories(Paths.get(outputDirectoryName));
-            Files.write(Paths.get(outputDirectoryName + "/" + resourceName + remainResourceName), newFileContent.getBytes());
+            Files.write(Paths.get(outputDirectoryName + "/" + resourceName + remainResourceName), fileContent.getBytes());
         }
 
         scanner.close();
