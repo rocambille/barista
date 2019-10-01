@@ -47,8 +47,9 @@ class ${UpperName}Controller {
         return "redirect:/${slugs}/" + resource.getId();
     }
 
-    @GetMapping("/${slugs}")
+    @GetMapping("/${slugs}/create")
     public String add(@ModelAttribute ${UpperName} resource) {
+        model.addAttribute("resource", resource);
         return "${slugs}/form";
     }
 
