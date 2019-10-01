@@ -73,26 +73,26 @@ class Barista {
                 System.out.println("Sorry, but I didn't understand your choice");
         }
 
-        private void writeResourceFile(int resourceNumber, String resourceName, String outputDirectoryName, String fileContent) {
-            String remainResourceName = "";
-            
-            switch(resourceNumber) {
-                case 1: remainResourceName = ".java";
-                        break;
-
-                case 2: remainResourceName = "Controller.java";
-                        break;
-
-                default: System.out.println("Sorry, invalid resource");
-            }
-
-            System.out.println("Writing " + resourceName + remainResourceName + " for you...");
-            Files.createDirectories(Paths.get(outputDirectoryName));
-            Files.write(Paths.get(outputDirectoryName + "/" + resourceName + remainResourceName), fileContent.getBytes());
-        }
-
         scanner.close();
 
         System.out.println("Have a nice day :)");
+    }
+    
+    private void writeResourceFile(int resourceNumber, String resourceName, String outputDirectoryName, String fileContent) {
+        String remainResourceName = "";
+        
+        switch(resourceNumber) {
+            case 1: remainResourceName = ".java";
+                    break;
+
+            case 2: remainResourceName = "Controller.java";
+                    break;
+
+            default: System.out.println("Sorry, invalid resource");
+        }
+
+        System.out.println("Writing " + resourceName + remainResourceName + " for you...");
+        Files.createDirectories(Paths.get(outputDirectoryName));
+        Files.write(Paths.get(outputDirectoryName + "/" + resourceName + remainResourceName), fileContent.getBytes());
     }
 }
