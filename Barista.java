@@ -7,7 +7,7 @@ class Barista {
     public static void main(String[] args) {
         String baseInputDirectoryName = "src/main/resources/templates/barista";
         String baseOutputDirectoryName = "src/main/java";
-        String resourceMapping = "";
+        String resourceSlugs = "";
 
         System.out.println("Hello dear customer :)");
         System.out.println("What can I do for you today?");
@@ -60,10 +60,10 @@ class Barista {
                 String resourceLowerCase = resourceName.toLowerCase();
 
                 if(resourceLowerCase.endsWith("y")) {
-                    resourceMapping = resourceLowerCase.substring(0, resourceLowerCase.length() - 1) + "ies";
-                } else {
-                        resourceMapping = resourceLowerCase + "s";
-                };
+                    resourceSlugs = resourceLowerCase.substring(0, resourceLowerCase.length() - 1) + "ies";
+                } else if(!resourceLowerCase.endsWith("s")){
+                    resourceSlugs = resourceLowerCase + "s";
+                }
 
                 try {
                     String fileContent = new String(
@@ -72,9 +72,9 @@ class Barista {
                         )
                     );
         
-                    String newFileContentPathOne = fileContent.replace("${Resource}", resourceNameNormalize);
-                    String newFileContentPathTwo = newFileContentPathOne.replace("${resource}", resourceLowerCase);
-                    String newFileContentPathThree = newFileContentPathTwo.replace("${resourceMapping}", resourceMapping );
+                    String newFileContentPathOne = fileContent.replace("${UpperName}", resourceNameNormalize);
+                    String newFileContentPathTwo = newFileContentPathOne.replace("${lowerName}", resourceLowerCase);
+                    String newFileContentPathThree = newFileContentPathTwo.replace("${slugs}", resourceSlugs );
 
         
                     System.out.println("Writing " + resourceNameNormalize + "Controller.java for you...");

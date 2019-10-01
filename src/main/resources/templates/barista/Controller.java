@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-/* Import your ${Resource} entity here */
-/* Import your ${Resource}Repository here */
+/* Import your ${UpperName} entity here */
+/* Import your ${UpperName}Repository here */
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,41 +18,51 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-class ${Resource}Controller {
+class ${UpperName}Controller {
     @Autowired
-    private ${Resource}Repository ${resource}Repository;
+    private ${UpperName}Repository ${lowerName}Repository;
 
-    @GetMapping("/${resourceMapping}")
-    public String ${resourceMapping}(Model model) {
-        List<${Resource}> ${resourceMapping} = ${resource}Repository.findAll();
-        model.addAttribute("${resourceMapping}", ${resourceMapping});
-        return ""; /* Insert your template name here */
+    @GetMapping("/${slugs}")
+    public String browse(Model model) {
+        List<${UpperName}> resources = ${lowerName}Repository.findAll();
+        model.addAttribute("${slugs}", resources);
+        return "${slugs}/browse";
     }
 
-    @GetMapping("/${resourceMapping}/{id}")
+    @GetMapping("/${slugs}/{id}")
     public String read(Model model, @PathVariable("id") Long id) {
-        ${Resource} ${resource} = ${resource}Repository.findById(id).get();
-        model.addAttribute("${resource}", ${resource});
-        return ""; /* Insert your template name here */
+        ${UpperName} resource = ${lowerName}Repository.findById(id).get();
+        model.addAttribute("${lowerName}", resource);
+        return "${slugs}/read";
     }
 
-    @PutMapping("/${resourceMapping}/{id}")
-    public String edit(@Valid @ModelAttribute ${Resource} ${resource}) {
-        ${resource}Repository.save(${resource});
-        return "";
+    @GetMapping("/${slugs}/{id}/edit")
+    public String edit(@ModelAttribute ${UpperName} ${lowerName}) {
+        return "${slugs}/form";
     }
 
-    @PostMapping("/${resourceMapping}")
-    public String add(@Valid @ModelAttribute ${Resource} ${resource}) {
-        ${Resource} ${resource} = ${resource}Repository.save(new ${Resource}());
-        return "redirect:/${resourceMapping}/" + ${resource}.getId();
+    @PutMapping("/${slugs}/{id}")
+    public String update(@Valid ${UpperName} resource) {
+        resource = ${lowerName}Repository.save(resource);
+        return "redirect:/${slugs}/" + resource.getId();
     }
 
-    @DeleteMapping("/${resourceMapping}/{id}")
+    @GetMapping("/${slugs}")
+    public String add(@ModelAttribute ${UpperName} resource) {
+        return "${slugs}/form";
+    }
+
+    @PostMapping("/${slugs}")
+    public String store(@Valid ${UpperName} resource) {
+        resource = ${lowerName}Repository.save(resource);
+        return "redirect:/${slugs}/" + resource.getId();
+    }
+
+    @DeleteMapping("/${slugs}/{id}")
     public String destroy(@PathVariable Long id) {
-        ${resource}Repository.delete(
-            ${resource}Repository.findById(id).get()
+        ${lowerName}Repository.delete(
+            ${lowerName}Repository.findById(id).get()
         ); 
-        return "redirect:/${resourceMapping}";
+        return "redirect:/${slugs}";
     }
 }
