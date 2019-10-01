@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-/* Import your ${$Resource} entity here */
-/* Import your ${Resource}Repository here */
+/* Import your ${$UpperName} entity here */
+/* Import your ${UpperName}Repository here */
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,34 +17,34 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-class ${Resource}Controller {
+class ${UpperName}Controller {
     @Autowired
-    private ${Resource}Repository ${resource}Repository;
+    private ${UpperName}Repository ${lowerName}Repository;
 
-    @GetMapping("/${resourceMapping}")
-    public List<${Resource}> browse() {
-        return ${resource}Repository.findAll();
+    @GetMapping("/${slugs}")
+    public List<${UpperName}> browse() {
+        return ${lowerName}Repository.findAll();
     }
 
-    @GetMapping("/${resourceMapping}/{id}")
-    public ${Resource} read(@PathVariable Long id) {
-        return ${resource}Repository.findById(id).get();
+    @GetMapping("/${slugs}/{id}")
+    public ${UpperName} read(@PathVariable Long id) {
+        return ${lowerName}Repository.findById(id).get();
     }
 
-    @PutMapping("/${resourceMapping}/{id}")
-    public ${Resource} edit(@Valid @ModelAttribute ${Resource} ${resource}) {
-        return ${resource}Repository.save(${resource});
+    @PutMapping("/${slugs}/{id}")
+    public ${UpperName} edit(@Valid @ModelAttribute ${UpperName} ${lowerName}) {
+        return ${lowerName}Repository.save(${lowerName});
     }
 
-    @PostMapping("/${resourceMapping}")
-    public ${Resource} add(@Valid @ModelAttribute ${Resource} ${resource}) {
-        return ${resource}Repository.save(${resource});
+    @PostMapping("/${slugs}")
+    public ${UpperName} add(@Valid @ModelAttribute ${UpperName} ${lowerName}) {
+        return ${lowerName}Repository.save(${lowerName});
     }
 
-    @DeleteMapping("/${resourceMapping}/{id}")
+    @DeleteMapping("/${slugs}/{id}")
     public void destroy(@PathVariable Long id) {
-        ${resource}Repository.delete(
-            ${resource}Repository.findById(id).get()
+        ${lowerName}Repository.delete(
+            ${lowerName}Repository.findById(id).get()
         ); 
     }
 }
