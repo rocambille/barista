@@ -10,4 +10,13 @@ public class ${Entity} {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Long getId() {
+        return name;
+    }
+
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
