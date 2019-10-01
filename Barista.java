@@ -12,6 +12,7 @@ class Barista {
         System.out.println("What can I do for you today?");
         System.out.println("1 - I want an entity");
         System.out.println("2 - I want a controller");
+        System.out.println("3 - I want a repository");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -68,6 +69,30 @@ class Barista {
                     System.out.println("Writing " + resourceName + "Controller.java for you...");
                     Files.createDirectories(Paths.get(outputDirectoryName));
                     Files.write(Paths.get(outputDirectoryName + "/" + resourceName + "Controller.java"), newFileContent.getBytes());
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+                case 4:
+                outputDirectoryName += "/repositories";
+                System.out.println("Do you need a repository? Just say the name of his entity:");
+
+                String repositoryName = scanner.nextLine();
+                String repositoryNameNormalize = repositoryName.substring(0,1).toUpperCase()+repositoryName.substring(1);
+
+                try {
+                    String fileContent = new String(
+                        Files.readAllBytes(
+                            Paths.get(baseInputDirectoryName + "/Repository.java")
+                        )
+                    );
+        
+                    String newFileContent = fileContent.replace("${Repository}", repositoryNameNormalize);
+        
+                    System.out.println("Writing " + repositoryNameNormalize + "Repository.java for you...");
+                    Files.createDirectories(Paths.get(outputDirectoryName));
+                    Files.write(Paths.get(outputDirectoryName + "/" + repositoryNameNormalize + "Repository.java"), newFileContent.getBytes());
                 }
                 catch(Exception e) {
                     e.printStackTrace();
