@@ -41,10 +41,8 @@ class Barista {
                     );
         
                     String newFileContent = fileContent.replace("${Entity}", entityName);
-        
-                    System.out.println("Writing " + entityName + ".java for you...");
-                    Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + entityName + ".java"), newFileContent.getBytes());
+
+                    this.writeResourceFile(choice, entityName, outputDirectoryName, newFileContent);
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -64,10 +62,8 @@ class Barista {
                     );
         
                     String newFileContent = fileContent.replace("${Resource}", resourceName);
-        
-                    System.out.println("Writing " + resourceName + "Controller.java for you...");
-                    Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + resourceName + "Controller.java"), newFileContent.getBytes());
+                    
+                    this.writeResourceFile(choice, resourceName, outputDirectoryName, newFileContent);
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -75,6 +71,24 @@ class Barista {
                 break;
             default:
                 System.out.println("Sorry, but I didn't understand your choice");
+        }
+
+        private void writeResourceFile(int resourceNumber, String resourceName, String outputDirectoryName, String fileContent) {
+            String remainResourceName = "";
+            
+            switch(resourceNumber) {
+                case 1: remainResourceName = ".java";
+                        break;
+
+                case 2: remainResourceName = "Controller.java";
+                        break;
+
+                default: System.out.println("Sorry, invalid resource");
+            }
+
+            System.out.println("Writing " + resourceName + remainResourceName + " for you...");
+            Files.createDirectories(Paths.get(outputDirectoryName));
+            Files.write(Paths.get(outputDirectoryName + "/" + resourceName + remainResourceName), newFileContent.getBytes());
         }
 
         scanner.close();
