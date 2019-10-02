@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-/* Import your ${$UpperName} entity here */
+/* Import your ${UpperName} entity here */
 /* Import your ${UpperName}Repository here */
 
 import org.springframework.web.bind.annotation.RestController;
@@ -31,13 +31,13 @@ class ${UpperName}Controller {
         return ${lowerName}Repository.findById(id).get();
     }
 
-    @PutMapping("/${slugs}/{id}/edit")
-    public ${UpperName} edit(@Valid @ModelAttribute ${UpperName} resource) {
+    @PutMapping("/${slugs}/{id}")
+    public ${UpperName} edit(@Valid ${UpperName} resource) {
         return ${lowerName}Repository.save(resource);
     }
 
-    @PostMapping("/${slugs}/create")
-    public ${UpperName} add(@Valid @ModelAttribute ${UpperName} resource) {
+    @PostMapping("/${slugs}")
+    public ${UpperName} add(@Valid ${UpperName} resource) {
         return ${lowerName}Repository.save(resource);
     }
 
