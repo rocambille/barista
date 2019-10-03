@@ -1,12 +1,33 @@
 # Barista
 
-Barista is a command-line interface to assist you while you build your java application.
+Barista is a CLI that can assist you while you build your Java application.
 
-Just compile Barista.java:
+## Installation
 
-    javac Barista.java
+Clone this repository:
 
-Then run it:
+```bash
+git clone https://github.com/wasthishelpful/barista
+```
 
-    java Barista
+Then compile Barista.java:
 
+```bash
+javac Barista.java
+```
+
+## Usage
+
+Run Barista:
+
+```bash
+java Barista.java
+```
+
+## Contributing
+
+Pull requests are welcome. Check the [issues](https://github.com/wasthishelpful/barista/issues) to see how you can help (and feel free to open new ones).
+
+## License
+
+Barista is open source software [licensed as MIT](LICENSE.md).
