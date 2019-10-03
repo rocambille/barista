@@ -7,15 +7,14 @@ import javax.validation.Valid;
 /* Import your ${UpperName} entity here */
 /* Import your ${UpperName}Repository here */
 
-import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 class ${UpperName}Controller {
@@ -24,46 +23,46 @@ class ${UpperName}Controller {
 
     @GetMapping("/${slugs}")
     public String browse(Model model) {
-        List<${UpperName}> resources = ${lowerName}Repository.findAll();
-        model.addAttribute("${slugs}", resources);
+        List<${UpperName}> ${lowerName}List = ${lowerName}Repository.findAll();
+        model.addAttribute("${lowerName}List", ${lowerName}List);
         return "${slugs}/browse";
     }
 
     @GetMapping("/${slugs}/{id}")
-    public String read(Model model, @PathVariable("id") Long id) {
-        ${UpperName} resource = ${lowerName}Repository.findById(id).get();
-        model.addAttribute("${lowerName}", resource);
+    public String read(Model model, Long id) {
+        ${UpperName} ${lowerName} = ${lowerName}Repository.getOne(id);
+        model.addAttribute("${lowerName}", ${lowerName});
         return "${slugs}/read";
     }
 
     @GetMapping("/${slugs}/{id}/edit")
-    public String edit(@ModelAttribute ${UpperName} ${lowerName}) {
+    public String edit(Model model, Long id) {
+        ${UpperName} ${lowerName} = ${lowerName}Repository.getOne(id);
+        model.addAttribute("${lowerName}", ${lowerName});
         return "${slugs}/form";
     }
 
     @PutMapping("/${slugs}/{id}")
-    public String update(@Valid ${UpperName} resource) {
-        resource = ${lowerName}Repository.save(resource);
-        return "redirect:/${slugs}/" + resource.getId();
+    public String update(@Valid ${UpperName} ${lowerName}) {
+        ${lowerName} = ${lowerName}Repository.save(${lowerName});
+        return "redirect:/${slugs}/" + ${lowerName}.getId();
     }
 
     @GetMapping("/${slugs}/create")
-    public String add(Model model, ${UpperName} resource) {
-        model.addAttribute("resource", resource);
+    public String add(Model model, ${UpperName} ${lowerName}) {
+        model.addAttribute("${lowerName}", ${lowerName});
         return "${slugs}/form";
     }
 
     @PostMapping("/${slugs}")
-    public String store(@Valid ${UpperName} resource) {
-        resource = ${lowerName}Repository.save(resource);
-        return "redirect:/${slugs}/" + resource.getId();
+    public String store(@Valid ${UpperName} ${lowerName}) {
+        ${lowerName} = ${lowerName}Repository.save(${lowerName});
+        return "redirect:/${slugs}/" + ${lowerName}.getId();
     }
 
     @DeleteMapping("/${slugs}/{id}")
     public String destroy(@PathVariable Long id) {
-        ${lowerName}Repository.delete(
-            ${lowerName}Repository.findById(id).get()
-        ); 
+        ${lowerName}Repository.deleteById(id);
         return "redirect:/${slugs}";
     }
 }
