@@ -53,7 +53,7 @@ class Barista {
                     e.printStackTrace();
                 }
                 break;
-            case 2:
+            case 2: {
                 outputDirectoryName += "/controllers";
                 System.out.println("Do you need a resource controller? Just tell the name of your resource:");
 
@@ -85,8 +85,8 @@ class Barista {
                 catch(Exception e) {
                     e.printStackTrace();
                 }
-                break;
-            case 3:
+            } break;
+            case 3: {
                 outputDirectoryName += "/controllers";
                 System.out.println("Do you need a resource restController? Just tell the name of your resource:");
 
@@ -118,7 +118,7 @@ class Barista {
                 catch(Exception e) {
                     e.printStackTrace();
                 }
-                break;
+            } break;
             case 4:
                 outputDirectoryName += "/repositories";
                 System.out.println("Do you need a repository? Just say the name of his entity:");
