@@ -48,7 +48,7 @@ class ${UpperName}Controller {
     }
 
     @GetMapping("/${slugs}/create")
-    public String add(@ModelAttribute ${UpperName} resource) {
+    public String add(Model model, ${UpperName} resource) {
         model.addAttribute("resource", resource);
         return "${slugs}/form";
     }
