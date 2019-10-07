@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import org.apache.commons.cli.ParseException;
 
@@ -34,8 +35,7 @@ class Barista {
 	public static void main(String[] args) throws ParseException {
 		System.out.println("Hello dear customer :)");
 		System.out.println("What can I do for you today?");
-		System.out.println("1 - I want an entity");
-		System.out.println("2 - I want a resource controller");
+		Stream.of(BaristaClassType.values()).forEach((c) -> {System.out.println("" + c.getChoice() + " - I want " + ("aeiou".indexOf(c.getPackagename().toLowerCase().charAt(0))==-1?"a ":"an ")  + c.name());});
 
 		Scanner scanner = new Scanner(System.in);
 		Optional<BaristaClassType> instanceFromChoice = BaristaClassType.getInstanceFromChoice(scanner.nextLine());
@@ -73,10 +73,10 @@ class Barista {
 				String contentOfFileTemplate = "hello";
 				if (plugin) {
 					InputStream inputStream = this.getClass()
-							.getResourceAsStream(baseInputDirectoryName + "/" + baristaClass.getSuffixName() + ".java");
+							.getResourceAsStream(baseInputDirectoryName + "/" + baristaClass.getType().name() + ".java");
 					contentOfFileTemplate = readFromStream(inputStream);
 				} else {
-					contentOfFileTemplate = readFromPath(Paths.get(baseInputDirectoryName + "/" + baristaClass.getSuffixName() + ".java"));
+					contentOfFileTemplate = readFromPath(Paths.get(baseInputDirectoryName + "/" + baristaClass.getType().name() + ".java"));
 				}
 
 				writeFile(contentOfFileTemplate, baristaClass, outputDirectory);
