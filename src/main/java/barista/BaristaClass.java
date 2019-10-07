@@ -4,11 +4,13 @@ public class BaristaClass {
 
 	private BaristaClassType type;
 	private String name;
+	
 	public BaristaClass(BaristaClassType type, String name) {
 		super();
 		this.type = type;
 		this.name = name;
 	}
+	public BaristaClass() {}
 	public BaristaClassType getType() {
 		return type;
 	}

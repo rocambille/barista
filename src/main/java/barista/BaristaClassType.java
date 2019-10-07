@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public enum BaristaClassType {
 
-	ENTITY("1", "entities", "Entity"), CONTROLLER("2", "controllers", "Resource");
+	Entity("1", "entities", "Entity"), Controller("2", "controllers", "Resource");
 	private String choice;
 	private String packagename;
 	private String replaceInTemplate;
