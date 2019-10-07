@@ -35,7 +35,7 @@ class Barista {
 		System.out.println("Hello dear customer :)");
 		System.out.println("What can I do for you today?");
 		System.out.println("1 - I want an entity");
-		System.out.println("2 - I want a controller");
+		System.out.println("2 - I want a resource controller");
 
 		Scanner scanner = new Scanner(System.in);
 		Optional<BaristaClassType> instanceFromChoice = BaristaClassType.getInstanceFromChoice(scanner.nextLine());
@@ -74,35 +74,12 @@ class Barista {
 				if (plugin) {
 					InputStream inputStream = this.getClass()
 							.getResourceAsStream(baseInputDirectoryName + "/" + baristaClass.getSuffixName() + ".java");
-					if (inputStream == null) {
-						System.out.println("INPUTSTREAM is null!!!");
-					} else {
-						contentOfFileTemplate = readFromStream(inputStream);
-						String newFileContent = contentOfFileTemplate
-								.replace("${" + baristaClass.getParameternameTemplate() + "}", baristaClass.getName())
-								.replace("#####", baristaClass.getPackagename());
-
-						Path outputPath = Paths.get(outputDirectory);
-						System.out.println("outputPath = " + outputPath.toString());
-						Files.createDirectories(outputPath);
-						Path filePath = Paths.get(outputDirectory + "/" + baristaClass.getSimpleClassName() + ".java");
-						System.out.println("filePath = " + filePath.toString());
-						Files.write(filePath, newFileContent.getBytes());
-
-					}
+					contentOfFileTemplate = readFromStream(inputStream);
 				} else {
-					contentOfFileTemplate = new String(Files.readAllBytes(
-							Paths.get(baseInputDirectoryName + "/" + baristaClass.getSuffixName() + ".java")));
-
-					String newFileContent = contentOfFileTemplate
-							.replace("${" + baristaClass.getParameternameTemplate() + "}", baristaClass.getName())
-							.replace("#####", baristaClass.getPackagename());
-					Path outputDir = Paths.get(outputDirectory);
-					System.out.println("output = " + outputDir.toUri().toString());
-					Files.createDirectories(Paths.get(outputDirectory));
-					Files.write(Paths.get(outputDirectory + "/" + baristaClass.getSimpleClassName() + ".java"),
-							newFileContent.getBytes());
+					contentOfFileTemplate = readFromPath(Paths.get(baseInputDirectoryName + "/" + baristaClass.getSuffixName() + ".java"));
 				}
+
+				writeFile(contentOfFileTemplate, baristaClass, outputDirectory);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -110,6 +87,37 @@ class Barista {
 
 	}
 
+	private boolean writeFile(String originalContent, BaristaClass baristaClass, String outputDirectory) {
+		String resourceLowerCase = baristaClass.getName().toLowerCase();
+		String resourceNameNormalize = resourceLowerCase.substring(0,1).toUpperCase()+resourceLowerCase.substring(1);
+		String resourceSlugs = "";
+		if (resourceLowerCase.endsWith("y")) {
+			resourceSlugs = resourceLowerCase.substring(0, resourceLowerCase.length()-1) + "ies";
+		}else if (!resourceLowerCase.endsWith("s")) {
+			resourceSlugs = resourceLowerCase + "s";
+		}
+		
+		String newFileContent = originalContent
+				.replace("${" + baristaClass.getParameternameTemplate() + "}", baristaClass.getName())
+				.replace("${UpperName}", resourceNameNormalize)
+				.replace("${lowerName}", resourceLowerCase)
+				.replace("${slugs}", resourceSlugs)
+				.replace("#####", baristaClass.getPackagename());
+		try {
+			Path outputPath = Paths.get(outputDirectory);
+			Files.createDirectories(outputPath);
+			Path filePath = Paths.get(outputDirectory + "/" + baristaClass.getSimpleClassName() + ".java");
+			Files.write(filePath, newFileContent.getBytes());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	private String readFromPath(Path path) throws IOException{
+		return new String(Files.readAllBytes(path));
+	}
 	private String readFromStream(InputStream inputStream) throws IOException {
 		StringBuilder stringBuilder = new StringBuilder();
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
