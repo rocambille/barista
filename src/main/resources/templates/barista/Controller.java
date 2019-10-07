@@ -1,2 +1,4 @@
+package #####;
+
 class ${Resource}Controller {
 }
