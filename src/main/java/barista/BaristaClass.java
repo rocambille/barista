@@ -31,7 +31,7 @@ public class BaristaClass {
 	}
 	
 	public String getSimpleClassName() {
-		return name + getSuffixName();
+		return name + type.name();
 	}
 	
 }

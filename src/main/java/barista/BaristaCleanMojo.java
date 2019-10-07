@@ -3,7 +3,9 @@ package barista;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -18,42 +20,29 @@ public class BaristaCleanMojo extends AbstractMojo {
 	@Parameter(readonly = true, required = true, defaultValue = "${project.basedir}")
 	private File output;
 
+	public void cleanForType(BaristaClassType baristaClassType, String outputPath) {
+		String resourcePath = outputPath + "/" + baristaClassType.getPackagename();
+		
+		try {
+			if (Files.exists(Paths.get(resourcePath))){
+				Files.list(Paths.get(resourcePath)).forEach(BaristaCleanMojo::delete);
+				Files.deleteIfExists(Paths.get(resourcePath));
+				getLog().info("delete directory (and contents) of " + resourcePath);
+			}
+		}catch(Exception e) {
+			getLog().error("problems deleting directory (and/or contents) of " + resourcePath, e);
+		}
+	}
+	public static void delete(Path p) {
+		try {
+			Files.delete(p);
+		}catch(IOException e) {}
+	}
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		String outputPath = output.getAbsolutePath() + "/src/main/java";
-		String entityPath = outputPath + "/entities";
-		String controllerPath = outputPath + "/controllers";
-
-		try {
-			if (Files.exists(Paths.get(entityPath))) {
-				Files.list(Paths.get(entityPath)).forEach((p) -> {
-					try {
-						Files.delete(p);
-					} catch (IOException e) {
-					}
-				});
-				Files.deleteIfExists(Paths.get(entityPath));
-				getLog().info("delete all generated entities");
-			}
-		}catch(IOException e) {
-			getLog().error("couldn't delete all generated entities", e);
-		}
 		
-		try {
-			if (Files.exists(Paths.get(controllerPath))) {
-				Files.list(Paths.get(controllerPath)).forEach((p) -> {
-					try {
-						Files.delete(p);
-					} catch (IOException e) {
-					}
-				});
-				Files.deleteIfExists(Paths.get(controllerPath));
-				getLog().info("deleted all generated controllers");
-			}
-
-		} catch (IOException e) {
-			getLog().error("couldn't delete all generated entities", e);
-		}
+		Arrays.stream(BaristaClassType.values()).forEach((c)->cleanForType(c, outputPath));
 	}
 
 }

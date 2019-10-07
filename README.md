@@ -21,7 +21,7 @@ javac Barista.java
 Run Barista:
 
 ```bash
-java Barista.java
+java barista.Barista
 ```
 
 ## Use within maven project as plugin:
