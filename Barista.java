@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -45,7 +46,7 @@ class Barista {
 
                     String newFileContent = fileContent.replace("${Entity}", entityName);
 
-                    this.writeResourceFile(choice, entityName, outputDirectoryName, newFileContent);
+                    writeResourceFile(choice, entityName, outputDirectoryName, newFileContent);
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -76,7 +77,7 @@ class Barista {
                     newFileContent = newFileContent.replace("${lowerName}", resourceLowerCase);
                     newFileContent = newFileContent.replace("${slugs}", resourceSlugs );
 
-                    this.writeResourceFile(choice, resourceName, outputDirectoryName, newFileContent);
+                    writeResourceFile(choice, resourceName, outputDirectoryName, newFileContent);
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -107,7 +108,7 @@ class Barista {
                     newFileContent = newFileContent.replace("${lowerName}", resourceLowerCase);
                     newFileContent = newFileContent.replace("${slugs}", resourceSlugs );
 
-                    this.writeResourceFile(choice, resourceNameNormalize, outputDirectoryName, newFileContent);
+                    writeResourceFile(choice, resourceNameNormalize, outputDirectoryName, newFileContent);
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -129,7 +130,7 @@ class Barista {
 
                     String newFileContent = fileContent.replace("${Repository}", repositoryNameNormalize);
 
-                    this.writeResourceFile(choice, repositoryNameNormalize, outputDirectoryName, newFileContent);
+                    writeResourceFile(choice, repositoryNameNormalize, outputDirectoryName, newFileContent);
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -144,7 +145,7 @@ class Barista {
         System.out.println("Have a nice day :)");
     }
 
-    private void writeResourceFile(int resourceNumber, String resourceName, String outputDirectoryName, String fileContent) {
+    private static void writeResourceFile(int resourceNumber, String resourceName, String outputDirectoryName, String fileContent) throws IOException {
         String remainResourceName = "";
 
         switch(resourceNumber) {
