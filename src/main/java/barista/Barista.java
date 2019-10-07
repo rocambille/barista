@@ -35,7 +35,8 @@ class Barista {
 	public static void main(String[] args) throws ParseException {
 		System.out.println("Hello dear customer :)");
 		System.out.println("What can I do for you today?");
-		Stream.of(BaristaClassType.values()).forEach((c) -> {System.out.println("" + c.getChoice() + " - I want " + ("aeiou".indexOf(c.getPackagename().toLowerCase().charAt(0))==-1?"a ":"an ")  + c.name());});
+		Stream.of(BaristaClassType.values()).forEach((c) -> {System.out.println("" + (c.ordinal() + 1) + " - I want " + ("aeiou".indexOf(c.getPackagename().toLowerCase().charAt(0))==-1?"a ":"an ")  + c.name());});
+		
 
 		Scanner scanner = new Scanner(System.in);
 		Optional<BaristaClassType> instanceFromChoice = BaristaClassType.getInstanceFromChoice(scanner.nextLine());
