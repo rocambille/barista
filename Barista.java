@@ -35,6 +35,7 @@ class Barista {
                 System.out.println("Do you need an entity? Just tell its name:");
 
                 String entityName = scanner.nextLine();
+                String entityNameNormalize = entityName.substring(0,1).toUpperCase()+entityName.substring(1);
 
                 try {
                     String fileContent = new String(
@@ -43,11 +44,11 @@ class Barista {
                         )
                     );
 
-                    String newFileContent = fileContent.replace("${Entity}", entityName);
+                    String newFileContent = fileContent.replace("${Entity}", entityNameNormalize);
 
-                    System.out.println("Writing " + entityName + ".java for you...");
+                    System.out.println("Writing " + entityNameNormalize + "Entity.java for you...");
                     Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + entityName + ".java"), newFileContent.getBytes());
+                    Files.write(Paths.get(outputDirectoryName + "/" + entityNameNormalize + "Entity.java"), newFileContent.getBytes());
                 }
                 catch(Exception e) {
                     e.printStackTrace();
