@@ -46,9 +46,9 @@ class Barista {
 
                     String newFileContent = fileContent.replace("${Entity}", entityNameNormalize);
 
-                    System.out.println("Writing " + entityNameNormalize + "Entity.java for you...");
+                    System.out.println("Writing " + entityNameNormalize + ".java for you...");
                     Files.createDirectories(Paths.get(outputDirectoryName));
-                    Files.write(Paths.get(outputDirectoryName + "/" + entityNameNormalize + "Entity.java"), newFileContent.getBytes());
+                    Files.write(Paths.get(outputDirectoryName + "/" + entityNameNormalize + ".java"), newFileContent.getBytes());
                 }
                 catch(Exception e) {
                     e.printStackTrace();
@@ -122,7 +122,7 @@ class Barista {
             } break;
             case 4:
                 outputDirectoryName += "/repositories";
-                System.out.println("Do you need a repository? Just say the name of his entity:");
+                System.out.println("Do you need a repository? Just say the name of its entity:");
 
                 String repositoryName = scanner.nextLine();
                 String repositoryNameNormalize = repositoryName.substring(0,1).toUpperCase()+repositoryName.substring(1);
