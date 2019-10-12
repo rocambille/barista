@@ -18,24 +18,22 @@ public class ${Entity} {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false)
-    private Date creationTimestamp;
+    private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedTimestamp;
+    private Date updatedAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deletionTimestamp;
+    private Date deletedAt;
 
     @PrePersist
     protected final void onCreate() {
-        this.creationTimestamp = new Date();
-        this.createdBy = AbstractBaseEntity.currentUserId();
+        this.updatedAt = this.createdAt = new Date();
     }
 
     @PreUpdate
     protected final void onUpdate() {
-        this.updateTimestamp = new Date();
-        this.updatedBy = AbstractBaseEntity.currentUserId();
+        this.updatedAt = new Date();
     }
 
     public Long getId() {
@@ -46,19 +44,19 @@ public class ${Entity} {
         this.id = id;
     }
 
-    public Date getCreationTimestamp() {
-        return creationTimestamp;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public Date getLastModifiedTimestamp() {
-        return lastModifiedTimestamp;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public Date getDeletionTimestamp() {
-        return deletionTimestamp;
+    public Date getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeletionTimestamp(Date deletionTimestamp) {
-        this.deletionTimestamp = deletionTimestamp;
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }
