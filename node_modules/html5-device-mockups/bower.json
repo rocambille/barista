@@ -1,0 +1,21 @@
+{
+  "name": "html5-device-mockups",
+  "description": "HTML5 mockups of popular devices, to showcase your portfolio and spice up your website.",
+  "main": "dist/device-mockups.css",
+  "license": "MIT",
+  "homepage": "https://pixelsign.github.io/html5-device-mockups",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "js",
+    "img",
+    "fonts",
+    "css",
+    "index.html",
+    "device-mockups/**/*.psd"
+  ]
+}
